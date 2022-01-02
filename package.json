@@ -1,0 +1,17 @@
+{
+  "type": "module",
+  "devDependencies": {
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "jest": "^26.1.0",
+    "jest-environment-jsdom-sixteen": "^1.0.3",
+    "jest-environment-node": "^26.1.0"
+  },
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "babel": {
+    "plugins": [
+      "transform-es2015-modules-commonjs"
+    ]
+  }
+}
