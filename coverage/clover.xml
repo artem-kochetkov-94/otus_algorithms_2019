@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1642105348629" clover="3.2.0">
-  <project timestamp="1642105348629" name="All files">
-    <metrics statements="44" coveredstatements="43" conditionals="7" coveredconditionals="6" methods="7" coveredmethods="7" elements="58" coveredelements="56" complexity="0" loc="44" ncloc="44" packages="2" files="3" classes="3"/>
+<coverage generated="1642112838032" clover="3.2.0">
+  <project timestamp="1642112838032" name="All files">
+    <metrics statements="58" coveredstatements="57" conditionals="10" coveredconditionals="9" methods="8" coveredmethods="8" elements="76" coveredelements="74" complexity="0" loc="58" ncloc="58" packages="3" files="4" classes="4"/>
     <package name="02">
       <metrics statements="31" coveredstatements="30" conditionals="6" coveredconditionals="5" methods="5" coveredmethods="5"/>
       <file name="IArray.ts" path="/Users/artemkocetkov/Documents/home/education/Алгоритмы/src/02/IArray.ts">
@@ -59,6 +59,26 @@
         <line num="24" count="1" type="stmt"/>
         <line num="25" count="10" type="stmt"/>
         <line num="30" count="10" type="stmt"/>
+      </file>
+    </package>
+    <package name="04">
+      <metrics statements="14" coveredstatements="14" conditionals="3" coveredconditionals="3" methods="1" coveredmethods="1"/>
+      <file name="insertSort.ts" path="/Users/artemkocetkov/Documents/home/education/Алгоритмы/src/04/insertSort.ts">
+        <metrics statements="14" coveredstatements="14" conditionals="3" coveredconditionals="3" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="8" count="18" type="stmt"/>
+        <line num="11" count="18" type="stmt"/>
+        <line num="13" count="52" type="cond" truecount="2" falsecount="0"/>
+        <line num="14" count="14" type="stmt"/>
+        <line num="15" count="14" type="stmt"/>
+        <line num="18" count="38" type="stmt"/>
+        <line num="21" count="38" type="cond" truecount="1" falsecount="0"/>
+        <line num="22" count="4" type="stmt"/>
+        <line num="28" count="5" type="stmt"/>
       </file>
     </package>
   </project>
