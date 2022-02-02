@@ -97,6 +97,50 @@ class BinarySearchTree {
 
         return node;
     }
+
+    findMinNode(node) {
+        if (node.left === null) {
+            return node;
+        }
+
+        return this.findMinNode(node.left);
+    }
+
+    remove(node, data) {
+        if (!node) {
+            return null;
+        }
+
+        if (data < node.data) {
+            node.left = this.remove(node.left, data);
+            return;
+        }
+
+        if (data > node.data) {
+            node.right = this.remove(node.right, data);
+            return;
+        }
+
+        // если нет обоих потомков - просто сносим
+        if (!node.left.data && !node.right.data) {
+            return null;
+        }
+
+        // если есть только один потомок - перезатираем
+        if (!node.left) {
+            node = node.right;
+        }
+
+        if (!node.right) {
+            node = node.left;
+        }
+
+        // удаление с 2 потомками
+        let minNode = this.findMinNode(node.right);
+        node.data = minNode.data;
+        node.right = this.remove(node.right, minNode.data);
+        return node;
+    }
 }
 
 const bst = new BinarySearchTree();
