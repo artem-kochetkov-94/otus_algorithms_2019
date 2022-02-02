@@ -81,6 +81,22 @@ class BinarySearchTree {
         this.postOrderTraverse(node.right, callback);
         callback(node.data);
     }
+
+    search(node, data) {
+        if (node === null) {
+            return null;
+        }
+
+        if (data < node.data) {
+            return this.search(node.left, data);
+        }
+
+        if (data > node.data) {
+            return this.search(node.right, data);
+        }
+
+        return node;
+    }
 }
 
 const bst = new BinarySearchTree();
