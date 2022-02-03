@@ -172,3 +172,46 @@
     console.log('test2', test2);
     console.log('test3', test3);
 }
+
+// Дан массив из нулей и единиц. Нужно определить, какой максимальный по длине подинтервал единиц можно получить, удалив ровно один элемент массива.
+// [1, 1, 0]
+{
+    function f(arr) {
+        let subranges = [];
+
+        let count = 1;
+        let max = 0;
+        let currentValue = arr[0];
+
+        for (let i = 1; i < arr.length; i++) {
+            if (currentValue === arr[i]) {
+                count += 1;
+
+                if (i === arr.length - 1) {
+                    subranges.push([currentValue, count]);
+                }
+
+                continue;
+            }
+
+            subranges.push([currentValue, count]);
+            currentValue = arr[i];
+            count = 1;
+
+            let lastIndex = subranges.length - 1;
+
+            if (currentValue === 1) {
+                max = Math.max(max, subranges[lastIndex][1]);
+            } else if (subranges[lastIndex - 1] && subranges[lastIndex - 1][1] === 1) {
+                // если в предыдущей последовательности 1 ноль
+                let prevNumbersCount = subranges[lastIndex - 2] ? subranges[lastIndex - 2][1] : 0;
+                max = Math.max(max, subranges[lastIndex][1] + prevNumbersCount);
+            }
+        }
+
+        return max;
+    }
+
+    const test = f([0, 0, 1, 1, 0, 1, 1, 0]);
+    console.log('test', test);
+}
