@@ -49,7 +49,6 @@
 // Нужно написать функцию RLE, которая на выходе даст строку вида: A4B3C2XYZD4E3F3A6B28
 // И сгенерирует ошибку, если на вход пришла невалидная строка.
 // Пояснения: Если символ встречается 1 раз, он остается без изменений; Если символ повторяется более 1 раза, к нему добавляется количество повторений.
-
 {
     function RLE(str) {
         if (typeof str !== 'string' || !str.length) {
@@ -84,4 +83,92 @@
 
     const test = RLE('AAAABBBCCXYZDDDDEEEFFFAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBBB');
     console.log('test', test);
+}
+
+// Дан список интов, повторяющихся элементов в списке нет. Нужно преобразовать это множество в строку, сворачивая соседние по числовому ряду числа в диапазоны. Примеры:
+// [1,4,5,2,3,9,8,11,0] => "0-5,8-9,11"
+// [1,4,3,2] => "1-4"
+// [1,4] => "1,4"
+{
+    function wtf(_arr) {
+        let arr = _arr.sort((a,b) => a - b);
+        let result = '';
+
+        const groups = [];
+        let start = null;
+        let end = null;
+
+        for (let i = 0; i < arr.length; i++) {
+            // первым делом проверим есть ли элемент в предыдущих диапазонах
+
+            // если нет начала - задаем
+            if (start === null) {
+                start = arr[i];
+                continue;
+            }
+
+            // если нет конца - задаем
+            if (end === null) {
+                if (arr[i] < start) {
+                    end = start;
+                    start = arr[i];
+                } else {
+                    end = arr[i];
+                }
+
+                continue;
+            }
+
+            if (arr[i] === start || arr[i] === end) {
+                continue;
+            }
+
+            // если текущий элемент внутри диапазана
+            if (arr[i] > start && arr[i] < end) {
+                continue;
+            }
+
+            // если текущий элемент меньше на 1 минимального - задаем новый start
+            if (start - arr[i] === 1) {
+                start = arr[i];
+                continue;
+            }
+
+            // если текущий элемент больше на 1 максимального - задаем новый end
+            if (arr[i] - end === 1) {
+                end = arr[i];
+                continue;
+            }
+
+            // если текущий элемент не входит в диапазон (больше него) - формируем группу из предыдущих отрезков
+            groups.push([start, end]);
+            start = arr[i];
+            end = null;
+            continue;
+        }
+
+        groups.push([start, end]);
+
+        groups.forEach((group, index) => {
+            if (group[1] === null) {
+                result += group[0];
+            } else {
+                result += group.join('-');
+            }
+
+            if (index !== groups.length - 1) {
+                result += ',';
+            }
+        })
+
+        return result;
+    }
+
+    const test1 = wtf([1, 4, 5, 2, 3, 9, 8, 11, 0]);
+    const test2 = wtf([1, 4, 3, 2]);
+    const test3 = wtf([1, 4]);
+
+    console.log('test1', test1);
+    console.log('test2', test2);
+    console.log('test3', test3);
 }
