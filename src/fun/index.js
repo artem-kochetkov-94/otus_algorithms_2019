@@ -21,3 +21,26 @@
     console.log('1*b*1c, ', test);
 }
 
+// Даны два массива: [1, 2, 3, 2, 0] и [5, 1, 2, 7, 3, 2]
+// Надо вернуть [1, 2, 2, 3] (порядок неважен)
+{
+    function filter(arr1, arr2) {
+        let result = [];
+
+        for (let i = 0; i < arr1.length; i++) {
+            const sameValueIndex = arr2.findIndex(item => item === arr1[i]);
+
+            if (sameValueIndex < 0) {
+                continue;
+            }
+
+            result.push(arr1[i]);
+            arr2[sameValueIndex] = undefined;
+        }
+
+        return result;
+    }
+
+    const test = filter([1, 2, 3, 2, 0], [5, 1, 2, 7, 3, 2]);
+    console.log('test', test);
+}
