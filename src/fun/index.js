@@ -44,3 +44,44 @@
     const test = filter([1, 2, 3, 2, 0], [5, 1, 2, 7, 3, 2]);
     console.log('test', test);
 }
+
+// Дана строка (возможно, пустая), состоящая из букв A-Z: AAAABBBCCXYZDDDDEEEFFFAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBBB
+// Нужно написать функцию RLE, которая на выходе даст строку вида: A4B3C2XYZD4E3F3A6B28
+// И сгенерирует ошибку, если на вход пришла невалидная строка.
+// Пояснения: Если символ встречается 1 раз, он остается без изменений; Если символ повторяется более 1 раза, к нему добавляется количество повторений.
+
+{
+    function RLE(str) {
+        if (typeof str !== 'string' || !str.length) {
+            throw new Error('Не пройдешь!');
+        }
+
+        let result = str[0];
+        let currentChar = '';
+        let count = 1;
+
+        for (let i = 1; i < str.length; i++) {
+            currentChar = str[i];
+            if (str[i - 1] === currentChar) {
+                count += 1;
+                continue;
+            }
+
+            if (count > 1) {
+                result += count;
+            }
+
+            count = 1;
+            result += currentChar;
+        }
+
+        if (count > 1) {
+            result += count;
+        }
+
+        return result;
+    }
+
+    const test = RLE('AAAABBBCCXYZDDDDEEEFFFAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBBB');
+    console.log('test', test);
+}
